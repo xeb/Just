@@ -26,6 +26,11 @@ namespace Just.Web
 				var javaScript = GetJavaScripts(dir, ParseOrderList(context.Request));
 				context.Response.Write(javaScript);
 			}
+			else
+			{
+				// Return requested file
+				context.Response.Write(File.ReadAllText(context.Server.MapPath(context.Request.Url.LocalPath)));
+			}
 		}
 
 		public bool IsReusable
