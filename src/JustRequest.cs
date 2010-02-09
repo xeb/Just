@@ -57,7 +57,8 @@ namespace Just.Core
 		private string GetFileData(DirectoryInfo directory, IEnumerable<string> scriptOrderList, ContentType type)
 		{
 			var sb = new StringBuilder();
-			var allFiles = directory.GetFiles("*." + ContentManager.GetExtension(type)).ToList();
+			var extension = ContentManager.GetExtension(type);
+			var allFiles = directory.GetFiles("*." + extension).ToList();
 
 			foreach (var fileName in scriptOrderList)
 			{
@@ -89,7 +90,7 @@ namespace Just.Core
 				}
 				else
 				{
-					var file = allFiles.SingleOrDefault(f => f.Name.Equals(String.Concat(value, ".", type), StringComparison.OrdinalIgnoreCase));
+					var file = allFiles.SingleOrDefault(f => f.Name.Equals(String.Concat(value, ".", extension), StringComparison.OrdinalIgnoreCase));
 					if (file == null)
 					{
 						continue;

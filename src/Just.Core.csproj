@@ -59,8 +59,8 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="ContentManager.cs" />
-    <Compile Include="Mvc.Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="JustHandler.cs" />
+    <Compile Include="Mvc.Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="JustRequest.cs" />
     <Compile Include="Minifiers\CssMinifier.cs" />
     <Compile Include="Minifiers\JavaScriptCompressor.cs" />

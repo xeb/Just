@@ -1,0 +1,5 @@
+X:\Framework\v3.5\Just\1.0\Just.Core.dll
+X:\Framework\v3.5\Just\1.0\Just.Core.pdb
+C:\Projects\Just\src\obj\Debug\ResolveAssemblyReference.cache
+C:\Projects\Just\src\obj\Debug\Just.Core.dll
+C:\Projects\Just\src\obj\Debug\Just.Core.pdb

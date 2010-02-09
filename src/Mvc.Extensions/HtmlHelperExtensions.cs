@@ -13,7 +13,7 @@ namespace Just.Core.Mvc.Extensions
 		/// <param name="helper"></param>
 		/// <param name="url"></param>
 		/// <returns></returns>
-		public static string MapContentPath(this HtmlHelper helper, string url)
+		public static string MapPath(this HtmlHelper helper, string url)
 		{
 			return new UrlHelper(helper.ViewContext.RequestContext).Content(url);
 		}
@@ -27,7 +27,7 @@ namespace Just.Core.Mvc.Extensions
 		public static string IncludeJustJs(this HtmlHelper htmlHelper, params string[] scriptNames)
 		{
 			var root = ContentManager.GetContentRoot(ContentType.JavaScripts);
-			var format = "<script type=\"text/javascript\" src=\"" + MapContentPath(htmlHelper, root) + "just.js?d=";
+			var format = "<script type=\"text/javascript\" src=\"" + MapPath(htmlHelper, root) + "/just.js?d=";
 
 			scriptNames.ToList().ForEach(s => format = String.Format("{0}{1},", format, s));
 
@@ -45,7 +45,7 @@ namespace Just.Core.Mvc.Extensions
 		public static string IncludeJustCss(this HtmlHelper htmlHelper, params string[] styleSheets)
 		{
 			var root = ContentManager.GetContentRoot(ContentType.Stylesheets);
-			var format = "<link media=\"screen\" rel=\"stylesheet\" type=\"text/css\" href=\"" + MapContentPath(htmlHelper, root) + "just.css?d=";
+			var format = "<link media=\"screen\" rel=\"stylesheet\" type=\"text/css\" href=\"" + MapPath(htmlHelper, root) + "/just.css?d=";
 
 			styleSheets.ToList().ForEach(s => format = String.Format("{0}{1},", format, s));
 

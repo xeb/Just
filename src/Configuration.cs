@@ -11,7 +11,7 @@ namespace Just.Core
 		public static Dictionary<ContentType, bool> Minify = new Dictionary<ContentType, bool>
 		{
 			{ ContentType.JavaScripts, false },
-			{ ContentType.Stylesheets, true },
+			{ ContentType.Stylesheets, false },
 		};
 	}
 }
