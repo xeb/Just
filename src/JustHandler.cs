@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,11 +14,12 @@ namespace Just.Core
 	{
 		public void ProcessRequest(HttpContext context)
 		{
-			// If we are requesting a "just.*" file, wrap all JavaScript files
-			if(context.Request.Url.PathAndQuery.ToLower().Contains(Configuration.JustFileName) && !String.IsNullOrEmpty(context.Request.Url.Query))
+			// If we are requesting a "just.*" file, wrap all  files
+			if(context.Request.Url.PathAndQuery.ToLower().Contains(Configuration.JustFileName) && 
+				!String.IsNullOrEmpty(context.Request.Url.Query))
 			{
-				new JustRequest(context, ContentType.JavaScripts, JavaScriptCompressor.Compress).Process();
-				new JustRequest(context, ContentType.Stylesheets, CssMinifier.Compress).Process();
+				new JustRequest(context, ContentType.JavaScripts, GoogleClosureAPI.Compress);
+				new JustRequest(context, ContentType.Stylesheets, CssMinifier.Compress);
 			}
 			else
 			{

@@ -27,11 +27,17 @@ namespace Just.Core.Mvc.Extensions
 		public static string IncludeJustJs(this HtmlHelper htmlHelper, params string[] scriptNames)
 		{
 			var root = ContentManager.GetContentRoot(ContentType.JavaScripts);
-			var format = "<script type=\"text/javascript\" src=\"" + MapPath(htmlHelper, root) + "/just.js?d=";
+			var format = "<script type=\"text/javascript\" src=\"" + MapPath(htmlHelper, root) + "/just." + 
+				Configuration.GetHandlerExtension(ContentType.JavaScripts) + "?d=";
 
 			scriptNames.ToList().ForEach(s => format = String.Format("{0}{1},", format, s));
 
-			format += "&t=" + GetTimestamp(new DirectoryInfo(htmlHelper.ViewContext.HttpContext.Server.MapPath(root)));
+			if (scriptNames.Count() > 0)
+			{
+				format = format.Substring(0, format.Length - 1);
+			}
+
+			format += "&amp;t=" + GetTimestamp(new DirectoryInfo(htmlHelper.ViewContext.HttpContext.Server.MapPath(root)));
 
 			return String.Concat(format, "\"></script>");
 		}
@@ -45,11 +51,18 @@ namespace Just.Core.Mvc.Extensions
 		public static string IncludeJustCss(this HtmlHelper htmlHelper, params string[] styleSheets)
 		{
 			var root = ContentManager.GetContentRoot(ContentType.Stylesheets);
-			var format = "<link media=\"screen\" rel=\"stylesheet\" type=\"text/css\" href=\"" + MapPath(htmlHelper, root) + "/just.css?d=";
+			var format = "<link media=\"screen\" rel=\"stylesheet\" type=\"text/css\" href=\"" + 
+				MapPath(htmlHelper, root) + "/just." +
+				Configuration.GetHandlerExtension(ContentType.Stylesheets) + "?d=";
 
 			styleSheets.ToList().ForEach(s => format = String.Format("{0}{1},", format, s));
 
-			format += "&t=" + GetTimestamp(new DirectoryInfo(htmlHelper.ViewContext.HttpContext.Server.MapPath(root)));
+			if (styleSheets.Count() > 0)
+			{
+				format = format.Substring(0, format.Length - 1);
+			}
+
+			format += "&amp;t=" + GetTimestamp(new DirectoryInfo(htmlHelper.ViewContext.HttpContext.Server.MapPath(root)));
 
 			return String.Concat(format, "\" />");
 		}

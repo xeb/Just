@@ -17,6 +17,8 @@ namespace Just.Core
 			MimeType = ContentManager.GetMimeType(contentType);
 			Minifier = minifier;
 			ContentType = contentType;
+
+			Process();
 		}
 
 		public HttpContext Context { get; set; }
@@ -28,7 +30,7 @@ namespace Just.Core
 
 		public void Process()
 		{
-			if (!Context.Request.Url.LocalPath.EndsWith(String.Concat(".", Extension), StringComparison.OrdinalIgnoreCase))
+			if(!Context.Request.Url.PathAndQuery.ToLower().Contains(ContentType.ToString().ToLower()))
 			{
 				return;
 			}
