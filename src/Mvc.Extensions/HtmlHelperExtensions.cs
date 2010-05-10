@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Just.Core.Mvc.Extensions
@@ -30,7 +31,7 @@ namespace Just.Core.Mvc.Extensions
 			var format = "<script type=\"text/javascript\" src=\"" + MapPath(htmlHelper, root) + "/just." + 
 				Configuration.GetHandlerExtension(ContentType.JavaScripts) + "?d=";
 
-			scriptNames.ToList().ForEach(s => format = String.Format("{0}{1},", format, s));
+			scriptNames.ToList().ForEach(s => format = String.Format("{0}{1},", format,  HttpUtility.UrlEncode(s)));
 
 			if (scriptNames.Count() > 0)
 			{
