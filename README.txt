@@ -2,7 +2,7 @@
 -----------------------------------------------------------------
 |	JavaScript Unified Source Transposer			
 |	by xeb
-|	idea credit to: jKelly & nBoll
+|	thanks go to: jKelly & nBoll
 -----------------------------------------------------------------
 
 
