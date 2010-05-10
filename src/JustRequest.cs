@@ -62,6 +62,21 @@ namespace Just.Core
 			var extension = ContentManager.GetExtension(type);
 			var allFiles = directory.GetFiles("*." + extension).ToList();
 
+			Func<string,bool> query = s => s.Contains("\\") || s.Contains("/");
+			var additionalScript = "";
+			if (scriptOrderList.Any(query))
+			{
+				scriptOrderList.Where(query).ToList().ForEach(s =>
+				                                              {
+																  var subdirectory = s.Split('\\', '/');
+																  if(subdirectory.Length >= 2)
+																  {
+																	  additionalScript = GetFileData(new DirectoryInfo(directory.FullName + "\\" + subdirectory[0]),
+																		  new[] { subdirectory[1] }, type);
+																  }
+				                                              });
+			}
+
 			foreach (var fileName in scriptOrderList)
 			{
 				string value = fileName;
@@ -107,6 +122,8 @@ namespace Just.Core
 					allFiles.Remove(file);
 				}
 			}
+
+			sb.Append(additionalScript);
 
 			return sb.ToString();
 		}
