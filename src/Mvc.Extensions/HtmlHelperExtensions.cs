@@ -70,7 +70,7 @@ namespace Just.Core.Mvc.Extensions
 
 		private static string GetTimestamp(DirectoryInfo directory)
 		{
-			return directory.GetFiles().OrderBy(f => f.LastWriteTime).FirstOrDefault().LastWriteTime.ToString("yyyyMMddHHmmssff");
+			return directory.GetFiles().OrderBy(f => f.LastAccessTime).FirstOrDefault().LastWriteTime.ToString("yyyyMMddHHmmssff");
 		}
 	}
 }
