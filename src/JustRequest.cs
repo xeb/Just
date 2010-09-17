@@ -39,6 +39,13 @@ namespace Just.Core
 
 			Context.Response.ContentType = MimeType;
 			Context.Response.Write(script);
+
+			var expirationDays = Configuration.GetConfigSetting("ExpirationDays", 0);
+			if(expirationDays > 0)
+			{
+				Context.Response.ExpiresAbsolute = DateTime.Now.AddDays(expirationDays);
+			}
+
 			Context.Response.End();
 		}
 
